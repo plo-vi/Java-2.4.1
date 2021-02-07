@@ -26,7 +26,7 @@ public class StatsService {
     }
 
     public int minMonth(int[] purchases) {
-        int smallest = purchases[0], index = 0;
+        int smallest = Integer.MAX_VALUE, index = 1;
         for (int i = 1; i < purchases.length; i++) {
             if (purchases[i] <= smallest) {
                 smallest = purchases[i];
@@ -38,8 +38,8 @@ public class StatsService {
 
     public int lowerMonths(int[] purchases) {
         int badMonth = 0;
-        for (int i = 0; i < purchases.length; i++) {
-            if (purchases[i] > averageCost(purchases)) {
+        for (int purchase : purchases) {
+            if (purchase > averageCost(purchases)) {
                 badMonth++;
             }
         }
@@ -48,8 +48,8 @@ public class StatsService {
 
     public int higherMonths(int[] purchases) {
         int goodMonth = 0;
-        for (int i = 0; i < purchases.length; i++) {
-            if (purchases[i] > averageCost(purchases)) {
+        for (int purchase : purchases) {
+            if (purchase > averageCost(purchases)) {
                 goodMonth++;
             }
         }
