@@ -4,77 +4,37 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class StatsServiceTest {
+    StatsService service = new StatsService();
+    int[] purchases = {8, 15, 13, 15, 17, 20, 19, 20, 7, 14, 14, 18};
 
     @Test
     void summary() {
-        StatsService service = new StatsService();
-
-        int[] purchases = {8, 15, 13, 15, 17, 20, 19, 20, 7, 14, 14, 18};
-        int expected = 180;
-
-        int actual = service.summary(purchases);
-
-        assertEquals(expected, actual);
+        assertEquals(180, service.summary(purchases));
     }
 
     @Test
     void averageCost() {
-        StatsService service = new StatsService();
-
-        int[] purchases = {8, 15, 13, 15, 17, 20, 19, 20, 7, 14, 14, 18};
-        int expected = 15;
-
-        int actual = service.averageCost(purchases);
-
-        assertEquals(expected, actual);
+        assertEquals(15, service.averageCost(purchases));
     }
 
     @Test
     void maxMonth() {
-        StatsService service = new StatsService();
-
-        int[] purchases = {8, 15, 13, 15, 17, 20, 19, 20, 7, 14, 14, 18};
-        int expected = 8;
-
-        int actual = service.maxMonth(purchases);
-
-        assertEquals(expected, actual);
+        assertEquals(8, service.maxMonth(purchases));
     }
 
     @Test
     void minMonth() {
-        StatsService service = new StatsService();
-
-        int[] purchases = {8, 15, 13, 15, 17, 20, 19, 20, 7, 14, 14, 18};
-        int expected = 9;
-
-        int actual = service.minMonth(purchases);
-
-        assertEquals(expected, actual);
+        assertEquals(9, service.minMonth(purchases));
     }
 
     @Test
     void lowerMonths() {
-        StatsService service = new StatsService();
-
-        int[] purchases = {8, 15, 13, 15, 17, 20, 19, 20, 7, 14, 14, 18};
-        int expected = 5;
-
-        int actual = service.lowerMonths(purchases);
-
-        assertEquals(expected, actual);
+        assertEquals(5, service.lowerMonths(purchases));
     }
 
     @Test
     void higherMonths() {
-        StatsService service = new StatsService();
-
-        int[] purchases = {8, 15, 13, 15, 17, 20, 19, 20, 7, 14, 14, 18};
-        int expected = 5;
-
-        int actual = service.higherMonths(purchases);
-
-        assertEquals(expected, actual);
+        assertEquals(5, service.higherMonths(purchases));
     }
 }
 

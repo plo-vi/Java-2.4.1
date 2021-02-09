@@ -14,32 +14,59 @@ public class StatsService {
         return summary(purchases) / purchases.length;
     }
 
-    public int maxMonth(int[] purchases) {
-        int largest = purchases[0], index = 0;
-        for (int i = 1; i < purchases.length; i++) {
-            if (purchases[i] >= largest) {
-                largest = purchases[i];
-                index = ++i;
+    private int getLargest(int[] purchases) {
+        int largest = purchases[0];
+        for (int purchase : purchases) {
+            if (largest < purchase) {
+                largest = purchase;
             }
         }
-        return index;
+        return largest;
+    }
+
+    public int maxMonth(int[] purchases) {
+        int largest = getLargest(purchases);
+
+        int index = 0;
+        int lastLargest = 0;
+        for (int purchase : purchases) {
+            index++;
+            if (purchase == largest) {
+                lastLargest = index;
+            }
+        }
+        return lastLargest;
+    }
+
+    private int getSmallest(int[] purchases) {
+        int smallest = purchases[0];
+        for (int purchase : purchases) {
+            if (smallest > purchase) {
+                smallest = purchase;
+            }
+        }
+        return smallest;
     }
 
     public int minMonth(int[] purchases) {
-        int smallest = Integer.MAX_VALUE, index = 1;
-        for (int i = 1; i < purchases.length; i++) {
-            if (purchases[i] <= smallest) {
-                smallest = purchases[i];
-                index = ++i;
+        int smallest = getSmallest(purchases);
+
+        int index = 0;
+        int lastSmallest = 0;
+        for (int purchase : purchases) {
+            index++;
+            if (purchase == smallest) {
+                lastSmallest = index;
             }
         }
-        return index;
+        return lastSmallest;
     }
 
     public int lowerMonths(int[] purchases) {
+        int averageCost = averageCost(purchases);
         int badMonth = 0;
         for (int purchase : purchases) {
-            if (purchase > averageCost(purchases)) {
+            if (purchase < averageCost) {
                 badMonth++;
             }
         }
@@ -47,9 +74,10 @@ public class StatsService {
     }
 
     public int higherMonths(int[] purchases) {
+        int averageCost = averageCost(purchases);
         int goodMonth = 0;
         for (int purchase : purchases) {
-            if (purchase > averageCost(purchases)) {
+            if (purchase > averageCost) {
                 goodMonth++;
             }
         }
